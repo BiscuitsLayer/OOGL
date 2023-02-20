@@ -2,7 +2,7 @@
 
 CC = g++
 CCC = gcc
-CCFLAGS = -O3 -Wall -Wextra -Werror -std=c++0x
+CCFLAGS = -O3 -Wall -Wextra -std=c++0x
 
 # Final library
 
@@ -10,8 +10,8 @@ libjpeg = $(patsubst src/GL/Util/libjpeg/%.c,lib/%.o,$(wildcard src/GL/Util/libj
 libpng = $(patsubst src/GL/Util/libpng/%.c,lib/%.o,$(wildcard src/GL/Util/libpng/*.c))
 zlib = $(patsubst src/GL/Util/zlib/%.c,lib/%.o,$(wildcard src/GL/Util/zlib/*.c))
 
-lib/OOGL.a: lib lib/Mat3.o lib/Mat4.o lib/Vec2.o lib/Vec3.o lib/Vec4.o lib/Window.o lib/Window_X11.o lib/Extensions.o lib/Context.o lib/Context_X11.o lib/Shader.o lib/Program.o lib/VertexBuffer.o lib/VertexArray.o lib/Texture.o lib/Renderbuffer.o lib/Framebuffer.o lib/Image.o lib/Mesh.o $(libjpeg) $(libpng) $(zlib)
-	ar rcs lib/OOGL.a lib/Mat3.o lib/Mat4.o lib/Vec2.o lib/Vec3.o lib/Vec4.o lib/Window.o lib/Window_X11.o lib/Extensions.o lib/Context.o lib/Context_X11.o lib/Shader.o lib/Program.o lib/VertexBuffer.o lib/VertexArray.o lib/Texture.o lib/Renderbuffer.o lib/Framebuffer.o lib/Image.o lib/Mesh.o $(libjpeg) $(libpng) $(zlib)
+lib/OOGL.a: lib lib/Mat3.o lib/Mat4.o lib/Vec2.o lib/Vec3.o lib/Vec4.o lib/Window.o lib/Window_Win32.o lib/Extensions.o lib/Context.o lib/Context_Win32.o lib/Shader.o lib/Program.o lib/VertexBuffer.o lib/VertexArray.o lib/Texture.o lib/Renderbuffer.o lib/Framebuffer.o lib/Image.o lib/Mesh.o $(libjpeg) $(libpng) $(zlib)
+	ar rcs lib/OOGL.a lib/Mat3.o lib/Mat4.o lib/Vec2.o lib/Vec3.o lib/Vec4.o lib/Window.o lib/Window_Win32.o lib/Extensions.o lib/Context.o lib/Context_Win32.o lib/Shader.o lib/Program.o lib/VertexBuffer.o lib/VertexArray.o lib/Texture.o lib/Renderbuffer.o lib/Framebuffer.o lib/Image.o lib/Mesh.o $(libjpeg) $(libpng) $(zlib)
 
 # 3D Math
 
@@ -35,8 +35,8 @@ lib/Vec4.o: src/GL/Math/Vec4.cpp
 lib/Window.o: src/GL/Window/Window.cpp
 	$(CC) $(CCFLAGS) -c src/GL/Window/Window.cpp -o lib/Window.o -I include
 
-lib/Window_X11.o: src/GL/Window/Window_X11.cpp
-	$(CC) $(CCFLAGS) -c src/GL/Window/Window_X11.cpp -o lib/Window_X11.o -I include
+lib/Window_Win32.o: src/GL/Window/Window_Win32.cpp
+	$(CC) $(CCFLAGS) -c src/GL/Window/Window_Win32.cpp -o lib/Window_Win32.o -I include
 
 # OpenGL
 
@@ -46,8 +46,8 @@ lib/Extensions.o: src/GL/GL/Extensions.cpp
 lib/Context.o: src/GL/GL/Context.cpp
 	$(CC) $(CCFLAGS) -c src/GL/GL/Context.cpp -o lib/Context.o -I include
 
-lib/Context_X11.o: src/GL/GL/Context_X11.cpp
-	$(CC) $(CCFLAGS) -c src/GL/GL/Context_X11.cpp -o lib/Context_X11.o -I include
+lib/Context_Win32.o: src/GL/GL/Context_Win32.cpp
+	$(CC) $(CCFLAGS) -c src/GL/GL/Context_Win32.cpp -o lib/Context_Win32.o -I include
 
 lib/Shader.o: src/GL/GL/Shader.cpp
 	$(CC) $(CCFLAGS) -c src/GL/GL/Shader.cpp -o lib/Shader.o -I include
