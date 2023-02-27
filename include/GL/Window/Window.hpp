@@ -58,7 +58,7 @@ namespace GL
 	class Window
 	{
 	public:
-		Window( uint width = 800, uint height = 600, const std::string& title = "Window", WindowStyle::window_style_t style = WindowStyle::Close );
+		Window( uint width = 800, uint height = 600, const std::string& title = "Window", WindowStyle::window_style_t style = WindowStyle::Close, WNDPROC windowEventHandler = WindowEventHandler);
 		~Window();
 		
 		int GetX();
@@ -90,7 +90,7 @@ namespace GL
 		Context& GetContext( uchar color = 32, uchar depth = 24, uchar stencil = 8, uchar antialias = 1 );
 		void Present();
 
-	private:
+	protected:
 		uint width, height;
 		int x, y;
 		bool open, focus;
