@@ -10,8 +10,8 @@ libjpeg = $(patsubst src/GL/Util/libjpeg/%.c,lib/%.o,$(wildcard src/GL/Util/libj
 libpng = $(patsubst src/GL/Util/libpng/%.c,lib/%.o,$(wildcard src/GL/Util/libpng/*.c))
 zlib = $(patsubst src/GL/Util/zlib/%.c,lib/%.o,$(wildcard src/GL/Util/zlib/*.c))
 
-lib/OOGL.a: lib lib/Mat3.o lib/Mat4.o lib/Vec2.o lib/Vec3.o lib/Vec4.o lib/Window.o lib/Window_Win32.o lib/Extensions.o lib/Context.o lib/Context_Win32.o lib/Shader.o lib/Program.o lib/VertexBuffer.o lib/VertexArray.o lib/Texture.o lib/Renderbuffer.o lib/Framebuffer.o lib/Image.o lib/Mesh.o $(libjpeg) $(libpng) $(zlib)
-	ar rcs lib/OOGL.a lib/Mat3.o lib/Mat4.o lib/Vec2.o lib/Vec3.o lib/Vec4.o lib/Window.o lib/Window_Win32.o lib/Extensions.o lib/Context.o lib/Context_Win32.o lib/Shader.o lib/Program.o lib/VertexBuffer.o lib/VertexArray.o lib/Texture.o lib/Renderbuffer.o lib/Framebuffer.o lib/Image.o lib/Mesh.o $(libjpeg) $(libpng) $(zlib)
+lib/OOGL.a: lib lib/Mat3.o lib/Mat4.o lib/Vec2.o lib/Vec3.o lib/Vec4.o lib/Window.o lib/Window_Win32.o lib/Extensions.o lib/Context.o lib/Context_Win32.o lib/Shader.o lib/StorageBuffer.o lib/Program.o lib/VertexBuffer.o lib/VertexArray.o lib/Texture.o lib/Renderbuffer.o lib/Framebuffer.o lib/Image.o lib/Mesh.o $(libjpeg) $(libpng) $(zlib)
+	ar rcs lib/OOGL.a lib/Mat3.o lib/Mat4.o lib/Vec2.o lib/Vec3.o lib/Vec4.o lib/Window.o lib/Window_Win32.o lib/Extensions.o lib/Context.o lib/Context_Win32.o lib/Shader.o lib/StorageBuffer.o lib/Program.o lib/VertexBuffer.o lib/VertexArray.o lib/Texture.o lib/Renderbuffer.o lib/Framebuffer.o lib/Image.o lib/Mesh.o $(libjpeg) $(libpng) $(zlib)
 
 # 3D Math
 
@@ -51,6 +51,9 @@ lib/Context_Win32.o: src/GL/GL/Context_Win32.cpp
 
 lib/Shader.o: src/GL/GL/Shader.cpp
 	$(CC) $(CCFLAGS) -c src/GL/GL/Shader.cpp -o lib/Shader.o -I include
+
+lib/StorageBuffer.o: src/GL/GL/StorageBuffer.cpp
+	$(CC) $(CCFLAGS) -c src/GL/GL/StorageBuffer.cpp -o lib/StorageBuffer.o -I include
 
 lib/Program.o: src/GL/GL/Program.cpp
 	$(CC) $(CCFLAGS) -c src/GL/GL/Program.cpp -o lib/Program.o -I include

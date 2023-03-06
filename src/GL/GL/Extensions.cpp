@@ -119,6 +119,10 @@ GLBINDBUFFERBASE glBindBufferBase;
 GLBEGINTRANSFORMFEEDBACK glBeginTransformFeedback;
 GLENDTRANSFORMFEEDBACK glEndTransformFeedback;
 
+GLDISPATCHCOMPUTE glDispatchCompute;
+GLMAPBUFFER glMapBuffer;
+GLMEMORYBARRIER glMemoryBarrier;
+
 namespace GL
 {
 	bool extensionsLoaded = false;
@@ -234,5 +238,9 @@ namespace GL
 		glBindBufferBase = (GLBINDBUFFERBASE)LoadExtension( "glBindBufferBase" );
 		glBeginTransformFeedback = (GLBEGINTRANSFORMFEEDBACK)LoadExtension( "glBeginTransformFeedback" );
 		glEndTransformFeedback = (GLENDTRANSFORMFEEDBACK)LoadExtension( "glEndTransformFeedback" );
+
+		glDispatchCompute = (GLDISPATCHCOMPUTE)LoadExtension( "glDispatchCompute" );
+		glMapBuffer = (GLMAPBUFFER)LoadExtension( "glMapBuffer" );
+		glMemoryBarrier = (GLMEMORYBARRIER)LoadExtension( "glMemoryBarrier" );
 	}
 }

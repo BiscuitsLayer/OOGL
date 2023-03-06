@@ -19,6 +19,7 @@
 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE
 */
 
+#include <memory>
 #include <GL/GL/Context.hpp>
 #include <GL/GL/Extensions.hpp>
 
@@ -47,6 +48,25 @@ namespace GL
 	void Context::DepthMask( bool writeEnabled )
 	{
 		glDepthMask( writeEnabled ? GL_TRUE : GL_FALSE );
+	}
+
+	void Context::DepthFunc( TestFunction::test_function_t function )
+	{
+		glDepthFunc( function );
+	}
+
+	void Context::DispatchCompute( uint num_groups_x, uint num_groups_y, uint num_groups_z )
+	{
+		glDispatchCompute( num_groups_x, num_groups_y, num_groups_z );
+	}
+
+	/* 
+		source_factor <- for incoming color
+		destination_factor <- for saved color
+	*/
+	void Context::BlendFunc( BlendingFactor::blending_factor_t source_factor, BlendingFactor::blending_factor_t destination_factor )
+	{
+		glBlendFunc( source_factor, destination_factor );
 	}
 
 	void Context::StencilMask( bool writeEnabled )
@@ -78,6 +98,12 @@ namespace GL
 	{
 		glActiveTexture( GL_TEXTURE0 + unit );
 		glBindTexture( GL_TEXTURE_2D, texture );
+	}
+
+	void Context::BindCubemap( const Texture& texture, uchar unit )
+	{
+		glActiveTexture( GL_TEXTURE0 + unit );
+		glBindTexture( GL_TEXTURE_CUBE_MAP, texture );
 	}
 
 	void Context::BindFramebuffer( const Framebuffer& framebuffer )
@@ -125,6 +151,17 @@ namespace GL
 	{
 		glBindVertexArray( vao );
 		glDrawElements( mode, count, type, (const GLvoid*)offset );
+	}
+
+	template <typename T>
+	std::shared_ptr<T> Context::MapStorageBuffer( BufferAccess::buffer_access_t access )
+	{
+		return std::make_shared<T>( static_cast<T*>( glMapBuffer( GL_SHADER_STORAGE_BUFFER, access ) ) );
+	}
+
+	void Context::Barrier( BarrierBit::barrier_bit_t barrier_type )
+	{
+		glMemoryBarrier( barrier_type );
 	}
 
 	Context Context::UseExistingContext()

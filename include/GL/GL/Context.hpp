@@ -80,7 +80,8 @@ namespace GL
 			DepthTest = GL_DEPTH_TEST,
 			StencilTest = GL_STENCIL_TEST,
 			CullFace = GL_CULL_FACE,
-			RasterizerDiscard = GL_RASTERIZER_DISCARD
+			RasterizerDiscard = GL_RASTERIZER_DISCARD,
+			Blend = GL_BLEND,
 		};
 	}
 
@@ -121,6 +122,74 @@ namespace GL
 	}
 
 	/*
+		Blending mode
+	*/
+	namespace BlendingFactor
+	{
+		enum blending_factor_t
+		{
+			Zero = GL_ZERO,
+			One = GL_ONE,
+
+			SourceColor = GL_SRC_COLOR,
+			OneMinusSourceColor = GL_ONE_MINUS_SRC_COLOR,
+			SourceAlpha = GL_SRC_ALPHA,
+			OneMinusSourceAlpha = GL_ONE_MINUS_SRC_ALPHA,
+
+			DestinationColor = GL_DST_COLOR,
+			OneMinusDestinationColor = GL_ONE_MINUS_DST_COLOR,
+			DestinationAlpha = GL_DST_ALPHA,
+			OneMinusDestinationAlpha = GL_ONE_MINUS_DST_ALPHA,
+
+			ConstantColor = GL_CONSTANT_COLOR,
+			OneMinusConstantColor = GL_ONE_MINUS_CONSTANT_COLOR,
+			ConstantAlpha = GL_CONSTANT_ALPHA,
+			OneMinusConstantAlpha = GL_ONE_MINUS_CONSTANT_ALPHA,
+		};
+	}
+
+	/*
+		Barriers
+	*/
+
+	namespace BarrierBit
+	{
+		enum barrier_bit_t
+		{
+			VertexAttribArray = GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT,
+			ElementArray = GL_ELEMENT_ARRAY_BARRIER_BIT,
+			Uniform = GL_UNIFORM_BARRIER_BIT,
+			TextureFetch = GL_TEXTURE_FETCH_BARRIER_BIT,
+			ShaderImageAccess = GL_SHADER_IMAGE_ACCESS_BARRIER_BIT,
+			Command = GL_COMMAND_BARRIER_BIT,
+			PixelBuffer = GL_PIXEL_BUFFER_BARRIER_BIT,
+			TextureUpdate = GL_TEXTURE_UPDATE_BARRIER_BIT,
+			BufferUpdate = GL_BUFFER_UPDATE_BARRIER_BIT,
+			FrameBuffer = GL_FRAMEBUFFER_BARRIER_BIT,
+			TransformFeedback = GL_TRANSFORM_FEEDBACK_BARRIER_BIT,
+			AtomicCounter = GL_ATOMIC_COUNTER_BARRIER_BIT,
+			ShaderStorage = GL_SHADER_STORAGE_BARRIER_BIT,
+			ClientMappedBuffer = GL_CLIENT_MAPPED_BUFFER_BARRIER_BIT,
+			QueryBuffer = GL_QUERY_BUFFER_BARRIER_BIT,
+			All = GL_ALL_BARRIER_BITS
+		};
+	}
+
+	/* 
+		Buffer access
+	*/
+
+	namespace BufferAccess
+	{
+		enum buffer_access_t
+		{
+			ReadOnly = GL_READ_ONLY,
+			WriteOnly = GL_WRITE_ONLY,
+			ReadWrite = GL_READ_WRITE
+		};
+	}
+
+	/*
 		Exceptions
 	*/
 	class VersionException : public std::exception 
@@ -156,6 +225,12 @@ namespace GL
 		void Clear( Buffer::buffer_t buffers = Buffer::Color | Buffer::Depth );
 
 		void DepthMask( bool writeEnabled );
+		void DepthFunc( TestFunction::test_function_t function );
+
+		void DispatchCompute( uint num_groups_x, uint num_groups_y, uint num_groups_z );
+
+		void BlendFunc( BlendingFactor::blending_factor_t source_factor, BlendingFactor::blending_factor_t destination_factor );
+
 		void StencilMask( bool writeEnabled );
 		void StencilMask( uint mask );
 
@@ -165,6 +240,7 @@ namespace GL
 		void UseProgram( const Program& program );
 
 		void BindTexture( const Texture& texture, uchar unit );
+		void BindCubemap( const Texture& texture, uchar unit );
 		
 		void BindFramebuffer( const Framebuffer& framebuffer );
 		void BindFramebuffer();
@@ -174,6 +250,11 @@ namespace GL
 
 		void DrawArrays( const VertexArray& vao, Primitive::primitive_t mode, uint offset, uint vertices );
 		void DrawElements( const VertexArray& vao, Primitive::primitive_t mode, intptr_t offset, uint count, uint type );
+
+		template <typename T>
+		std::shared_ptr<T> MapStorageBuffer( BufferAccess::buffer_access_t access );
+
+		void Barrier( BarrierBit::barrier_bit_t barrier_type );
 
 		float Time();
 

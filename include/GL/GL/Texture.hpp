@@ -28,6 +28,8 @@
 #include <GL/GL/GC.hpp>
 #include <GL/GL/Extensions.hpp>
 #include <GL/Util/Image.hpp>
+#include <stdexcept>
+#include <memory>
 
 namespace GL
 {
@@ -196,10 +198,11 @@ namespace GL
 	class Texture
 	{
 	public:
+		static Texture Cubemap( std::array<std::shared_ptr<GL::Image>, 6>& image_ptrs, InternalFormat::internal_format_t internalFormat );
+
 		Texture();
 		Texture( const Texture& other );
 		Texture( const Image& image, InternalFormat::internal_format_t internalFormat = InternalFormat::RGBA );
-
 		~Texture();
 
 		operator GLuint() const;

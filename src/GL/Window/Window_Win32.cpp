@@ -62,6 +62,7 @@ namespace GL
 
 		// Create window
 		HWND window = CreateWindow( "OOGL_WINDOW", title.c_str(), windowStyle, x, y, width, height, NULL, NULL, GetModuleHandle( NULL ), this );
+		this->title = title;
 
 		// Initialize fullscreen mode
 		if ( style & WindowStyle::Fullscreen )

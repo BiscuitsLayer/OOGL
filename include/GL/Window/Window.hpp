@@ -105,6 +105,7 @@ namespace GL
 #if defined( OOGL_PLATFORM_WINDOWS )
 		HWND window;
 		DWORD style;
+		std::string title;
 
 		LRESULT WindowEvent( UINT msg, WPARAM wParam, LPARAM lParam );
 		static LRESULT CALLBACK WindowEventHandler( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam );

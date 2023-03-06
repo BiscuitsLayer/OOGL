@@ -1,5 +1,5 @@
 /*
-	Copyright (C) 2012 Alexander Overvoorde
+	Copyright (C) 2023 Sergey Vinogradov
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy of
 	this software and associated documentation files (the "Software"), to deal in
@@ -21,53 +21,45 @@
 
 #pragma once
 
-#ifndef OOGL_HPP
-#define OOGL_HPP
-
-/*
-	Platform and type configuration
-*/
+#ifndef OOGL_STORAGEBUFFER_HPP
+#define OOGL_STORAGEBUFFER_HPP
 
 #include <GL/Platform.hpp>
-
-/*
-	3D math
-*/
-
-#include <GL/Math/Vec2.hpp>
-#include <GL/Math/Vec3.hpp>
-#include <GL/Math/Vec4.hpp>
-#include <GL/Math/Mat3.hpp>
-#include <GL/Math/Mat4.hpp>
-#include <GL/Math/Util.hpp>
-
-/*
-	Window management
-*/
-
-#include <GL/Window/Window.hpp>
-#include <GL/Window/Event.hpp>
-
-/*
-	OpenGL
-*/
-
+#include <GL/GL/GC.hpp>
 #include <GL/GL/Extensions.hpp>
-#include <GL/GL/Context.hpp>
-#include <GL/GL/Shader.hpp>
-#include <GL/GL/StorageBuffer.hpp>
-#include <GL/GL/Program.hpp>
 #include <GL/GL/VertexBuffer.hpp>
-#include <GL/GL/VertexArray.hpp>
-#include <GL/GL/Texture.hpp>
-#include <GL/GL/Framebuffer.hpp>
-
-/*
-	Utilities
-*/
-
-#include <GL/Util/Color.hpp>
-#include <GL/Util/Image.hpp>
+#include <GL/GL/StorageBuffer.hpp>
 #include <GL/Util/Mesh.hpp>
+#include <GL/Math/Vec4.hpp>
+#include <functional>
+#include <cstdint>
+
+namespace GL
+{
+	/*
+		Storage Buffer
+	*/
+	class StorageBuffer
+	{
+	public:
+		StorageBuffer();
+		StorageBuffer( const StorageBuffer& other );
+		StorageBuffer( const void* data, size_t length, BufferUsage::buffer_usage_t usage, int index );
+
+		~StorageBuffer();
+
+		operator GLuint() const;
+		const StorageBuffer& operator=( const StorageBuffer& other );
+
+		void Data( const void* data, size_t length, BufferUsage::buffer_usage_t usage, int index );
+		void SubData( const void* data, size_t offset, size_t length );
+
+		void GetSubData( void* data, size_t offset, size_t length );
+
+	private:
+		static GC gc;
+		GLuint obj;
+	};
+}
 
 #endif
