@@ -153,12 +153,6 @@ namespace GL
 		glDrawElements( mode, count, type, (const GLvoid*)offset );
 	}
 
-	template <typename T>
-	std::shared_ptr<T> Context::MapStorageBuffer( BufferAccess::buffer_access_t access )
-	{
-		return std::make_shared<T>( static_cast<T*>( glMapBuffer( GL_SHADER_STORAGE_BUFFER, access ) ) );
-	}
-
 	void Context::Barrier( BarrierBit::barrier_bit_t barrier_type )
 	{
 		glMemoryBarrier( barrier_type );

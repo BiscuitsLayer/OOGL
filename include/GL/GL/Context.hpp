@@ -251,9 +251,6 @@ namespace GL
 		void DrawArrays( const VertexArray& vao, Primitive::primitive_t mode, uint offset, uint vertices );
 		void DrawElements( const VertexArray& vao, Primitive::primitive_t mode, intptr_t offset, uint count, uint type );
 
-		template <typename T>
-		std::shared_ptr<T> MapStorageBuffer( BufferAccess::buffer_access_t access );
-
 		void Barrier( BarrierBit::barrier_bit_t barrier_type );
 
 		float Time();

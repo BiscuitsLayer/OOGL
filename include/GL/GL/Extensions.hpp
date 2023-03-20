@@ -508,8 +508,8 @@ extern GLENDTRANSFORMFEEDBACK glEndTransformFeedback;
 
 typedef void ( APIENTRYP GLDISPATCHCOMPUTE ) (GLuint num_groups_x, GLuint num_groups_y, GLuint num_groups_z);
 extern GLDISPATCHCOMPUTE glDispatchCompute;
-typedef void *( APIENTRYP GLMAPBUFFER ) (GLenum target, GLenum access);
-extern GLMAPBUFFER glMapBuffer;
+typedef void *( APIENTRYP GLMAPNAMEDBUFFER ) (GLuint buffer, GLenum access);
+extern GLMAPNAMEDBUFFER glMapNamedBuffer;
 typedef void ( APIENTRYP GLMEMORYBARRIER ) ( GLbitfield barriers );
 extern GLMEMORYBARRIER glMemoryBarrier;
 

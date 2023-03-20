@@ -120,7 +120,7 @@ GLBEGINTRANSFORMFEEDBACK glBeginTransformFeedback;
 GLENDTRANSFORMFEEDBACK glEndTransformFeedback;
 
 GLDISPATCHCOMPUTE glDispatchCompute;
-GLMAPBUFFER glMapBuffer;
+GLMAPNAMEDBUFFER glMapNamedBuffer;
 GLMEMORYBARRIER glMemoryBarrier;
 
 namespace GL
@@ -240,7 +240,7 @@ namespace GL
 		glEndTransformFeedback = (GLENDTRANSFORMFEEDBACK)LoadExtension( "glEndTransformFeedback" );
 
 		glDispatchCompute = (GLDISPATCHCOMPUTE)LoadExtension( "glDispatchCompute" );
-		glMapBuffer = (GLMAPBUFFER)LoadExtension( "glMapBuffer" );
+		glMapNamedBuffer = (GLMAPNAMEDBUFFER)LoadExtension( "glMapNamedBuffer" );
 		glMemoryBarrier = (GLMEMORYBARRIER)LoadExtension( "glMemoryBarrier" );
 	}
 }

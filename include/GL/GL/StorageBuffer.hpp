@@ -29,10 +29,12 @@
 #include <GL/GL/Extensions.hpp>
 #include <GL/GL/VertexBuffer.hpp>
 #include <GL/GL/StorageBuffer.hpp>
+#include <GL/GL/Context.hpp>
 #include <GL/Util/Mesh.hpp>
 #include <GL/Math/Vec4.hpp>
 #include <functional>
 #include <cstdint>
+#include <memory>
 
 namespace GL
 {
@@ -55,6 +57,11 @@ namespace GL
 		void SubData( const void* data, size_t offset, size_t length );
 
 		void GetSubData( void* data, size_t offset, size_t length );
+
+		template <typename T>
+		T* Map( BufferAccess::buffer_access_t access ) {
+			return static_cast<T*>( glMapNamedBuffer( obj, access ) );
+		}
 
 	private:
 		static GC gc;
