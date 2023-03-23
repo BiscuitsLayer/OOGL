@@ -30,6 +30,7 @@
 #include <GL/Util/Image.hpp>
 #include <stdexcept>
 #include <memory>
+#include <array>
 
 namespace GL
 {
