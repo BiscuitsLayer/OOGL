@@ -579,6 +579,11 @@ namespace GL
 		if ( info->width > USHRT_MAX ) throw FormatException();
 		if ( info->height > USHRT_MAX ) throw FormatException();
 
+		if ( info->color_type == PNG_COLOR_TYPE_PALETTE ) {
+			png_set_palette_to_rgb( png );
+			png_read_update_info(png, info);
+		}
+
 		// Pixel data
 		image = new Color[ info->width * info->height ];
 
@@ -589,7 +594,7 @@ namespace GL
 		{
 			png_read_row( png, &row[0], NULL );
 
-			if ( info->color_type == PNG_COLOR_TYPE_RGB )
+			if ( info->color_type == PNG_COLOR_TYPE_RGB || info->color_type == PNG_COLOR_TYPE_PALETTE )
 				for ( ushort x = 0; x < info->width; x++ )
 					image[ x + y * info->width ] = Color( row[x*3+0], row[x*3+1], row[x*3+2] );
 			else if ( info->color_type == PNG_COLOR_TYPE_RGBA )
