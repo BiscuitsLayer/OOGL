@@ -529,6 +529,11 @@ extern GLMEMORYBARRIER glMemoryBarrier;
 #define GL_READ_WRITE 0x88BA
 
 /*
+	Mode
+*/
+#define GL_MULTISAMPLE 0x809D
+
+/*
 	Extension loader
 */
 

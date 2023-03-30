@@ -82,6 +82,7 @@ namespace GL
 			CullFace = GL_CULL_FACE,
 			RasterizerDiscard = GL_RASTERIZER_DISCARD,
 			Blend = GL_BLEND,
+			Multisample = GL_MULTISAMPLE,
 		};
 	}
 

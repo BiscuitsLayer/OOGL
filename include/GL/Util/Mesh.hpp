@@ -39,6 +39,7 @@ namespace GL
 		Vec3 Pos;
 		Vec2 Tex;
 		Vec3 Normal;
+		Vec3 Tangent;
 	};
 
 	/*
