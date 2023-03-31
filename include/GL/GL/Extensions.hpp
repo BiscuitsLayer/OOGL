@@ -531,6 +531,7 @@ extern GLMEMORYBARRIER glMemoryBarrier;
 /*
 	Mode
 */
+
 #define GL_MULTISAMPLE 0x809D
 
 /*

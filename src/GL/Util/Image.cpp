@@ -84,6 +84,27 @@ namespace GL
 		if ( image ) delete [] image;
 	}
 
+	size_t Image::GetSerializedBufferSize() {
+		return 2 * sizeof( ushort ) + width * height * sizeof( Color );
+	}
+
+	void Image::Serialize( uchar* buffer )
+	{
+		std::memcpy( buffer + 0 * sizeof( ushort ), &width, sizeof( ushort ) );
+		std::memcpy( buffer + 1 * sizeof( ushort ), &height, sizeof( ushort ) );
+		std::memcpy( buffer + 2 * sizeof( ushort ), image, width * height * sizeof( Color ) );
+	}
+
+	void Image::Deserialize( uchar* buffer )
+	{
+		std::memcpy( &this->width, buffer + 0 * sizeof( ushort ), sizeof( ushort ) );
+		std::memcpy( &this->height, buffer + 1 * sizeof( ushort ), sizeof( ushort ) );
+
+		image = new Color[ width * height ];
+
+		std::memcpy( image, buffer + 2 * sizeof( ushort ), width * height * sizeof( Color ) );
+	}
+
 	void Image::Load( uchar* pixels, uint size )
 	{
 		// Unload image

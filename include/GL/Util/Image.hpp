@@ -79,6 +79,10 @@ namespace GL
 
 		~Image();
 
+		size_t GetSerializedBufferSize();
+		void Serialize( uchar* buffer );
+		void Deserialize( uchar* buffer );
+
 		void Load( uchar* pixels, uint size );
 		void Load( const std::string& filename );
 		void Save( const std::string& filename, ImageFileFormat::image_file_format_t format );
