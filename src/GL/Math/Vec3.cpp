@@ -50,6 +50,16 @@ namespace GL
 		return Vec3( X - v.X, Y - v.Y, Z - v.Z );
 	}
 
+	const bool Vec3::operator==( const Vec3& v ) const
+	{
+		return (X == v.X) && (Y == v.Y) && (Z == v.Z);
+	}
+
+	const bool Vec3::operator!=( const Vec3& v ) const
+	{
+		return !(*this == v);
+	}
+
 	Vec3 operator*( const Vec3& v, float n )
 	{
 		return Vec3( v.X * n, v.Y * n, v.Z * n );

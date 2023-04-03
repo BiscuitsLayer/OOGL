@@ -40,6 +40,9 @@ namespace GL
 		const Vec3 operator+( const Vec3& v ) const;
 		const Vec3 operator-( const Vec3& v ) const;
 
+		const bool operator==( const Vec3& v ) const;
+		const bool operator!=( const Vec3& v ) const;
+
 		friend Vec3 operator*( const Vec3& v, float n );
 		friend Vec3 operator*( float n, const Vec3& v );
 
