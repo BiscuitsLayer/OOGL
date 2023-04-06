@@ -254,6 +254,9 @@ namespace GL
 		void DrawArrays( const VertexArray& vao, Primitive::primitive_t mode, uint offset, uint vertices );
 		void DrawElements( const VertexArray& vao, Primitive::primitive_t mode, intptr_t offset, uint count, uint type );
 
+		void DrawArraysInstanced( const VertexArray& vao, Primitive::primitive_t mode, uint offset, uint vertices, uint instance_count );
+		void DrawElementsInstanced( const VertexArray& vao, Primitive::primitive_t mode, intptr_t offset, uint count, uint type, uint instance_count );
+
 		void Barrier( BarrierBit::barrier_bit_t barrier_type );
 
 		float Time();

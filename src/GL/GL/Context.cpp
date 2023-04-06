@@ -153,6 +153,18 @@ namespace GL
 		glDrawElements( mode, count, type, (const GLvoid*)offset );
 	}
 
+	void Context::DrawArraysInstanced( const VertexArray& vao, Primitive::primitive_t mode, uint offset, uint vertices, uint instance_count )
+	{
+		glBindVertexArray( vao );
+		glDrawArraysInstanced( mode, offset, vertices, instance_count );
+	}
+
+	void Context::DrawElementsInstanced( const VertexArray& vao, Primitive::primitive_t mode, intptr_t offset, uint count, uint type, uint instance_count )
+	{
+		glBindVertexArray( vao );
+		glDrawElementsInstanced( mode, count, type, (const GLvoid*)offset, instance_count );
+	}
+
 	void Context::Barrier( BarrierBit::barrier_bit_t barrier_type )
 	{
 		glMemoryBarrier( barrier_type );

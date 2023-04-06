@@ -57,6 +57,14 @@ namespace GL
 		glVertexAttribPointer( attribute, count, type, GL_FALSE, stride, (const GLvoid*)offset );
 	}
 
+	void VertexArray::BindAttributeDivisor( const Attribute& attribute, const VertexBuffer& buffer, uint divisor )
+	{
+		glBindVertexArray( obj );
+		glBindBuffer( GL_ARRAY_BUFFER, buffer );
+		glEnableVertexAttribArray( attribute );
+		glVertexAttribDivisor( attribute, divisor );
+	}
+
 	void VertexArray::BindElements( const VertexBuffer& elements )
 	{
 		glBindVertexArray( obj );

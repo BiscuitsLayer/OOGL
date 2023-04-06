@@ -535,6 +535,17 @@ extern GLMEMORYBARRIER glMemoryBarrier;
 #define GL_MULTISAMPLE 0x809D
 
 /*
+	Instances
+*/
+
+typedef void (APIENTRYP GLDRAWARRAYSINSTANCED) (GLenum mode, GLint first, GLsizei count, GLsizei instancecount);
+extern GLDRAWARRAYSINSTANCED glDrawArraysInstanced;
+typedef void (APIENTRYP GLDRAWELEMENTSINSTANCED) (GLenum mode, GLsizei count, GLenum type, const void *indices, GLsizei instancecount);
+extern GLDRAWELEMENTSINSTANCED glDrawElementsInstanced;
+typedef void (APIENTRYP GLVERTEXATTRIBDIVISOR) (GLuint index, GLuint divisor);
+extern GLVERTEXATTRIBDIVISOR glVertexAttribDivisor;
+
+/*
 	Extension loader
 */
 

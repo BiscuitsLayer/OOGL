@@ -123,6 +123,10 @@ GLDISPATCHCOMPUTE glDispatchCompute;
 GLMAPNAMEDBUFFER glMapNamedBuffer;
 GLMEMORYBARRIER glMemoryBarrier;
 
+GLDRAWARRAYSINSTANCED glDrawArraysInstanced;
+GLDRAWELEMENTSINSTANCED glDrawElementsInstanced;
+GLVERTEXATTRIBDIVISOR glVertexAttribDivisor;
+
 namespace GL
 {
 	bool extensionsLoaded = false;
@@ -242,5 +246,9 @@ namespace GL
 		glDispatchCompute = (GLDISPATCHCOMPUTE)LoadExtension( "glDispatchCompute" );
 		glMapNamedBuffer = (GLMAPNAMEDBUFFER)LoadExtension( "glMapNamedBuffer" );
 		glMemoryBarrier = (GLMEMORYBARRIER)LoadExtension( "glMemoryBarrier" );
+
+		glDrawArraysInstanced = (GLDRAWARRAYSINSTANCED)LoadExtension( "glDrawArraysInstanced" );
+		glDrawElementsInstanced = (GLDRAWELEMENTSINSTANCED)LoadExtension( "glDrawElementsInstanced" );
+		glVertexAttribDivisor = (GLVERTEXATTRIBDIVISOR)LoadExtension( "glVertexAttribDivisor" );
 	}
 }

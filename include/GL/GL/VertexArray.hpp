@@ -43,6 +43,7 @@ namespace GL
 		const VertexArray& operator=( const VertexArray& other );
 
 		void BindAttribute( const Attribute& attribute, const VertexBuffer& buffer, Type::type_t type, uint count, uint stride, intptr_t offset );
+		void BindAttributeDivisor( const Attribute& attribute, const VertexBuffer& buffer, uint divisor );
 
 		void BindElements( const VertexBuffer& elements );
 
