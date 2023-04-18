@@ -66,7 +66,7 @@ namespace GL
 			WGL_DEPTH_BITS_ARB, depth,
 			WGL_STENCIL_BITS_ARB, stencil,
 			WGL_SAMPLE_BUFFERS_ARB, antialias > 1 ? GL_TRUE : GL_FALSE,
-			WGL_SAMPLES_ARB, antialias > 1 ? antialias : 0,
+			WGL_SAMPLES_ARB, static_cast<int>(antialias > 1 ? antialias : 0),
 			0
 		};
 

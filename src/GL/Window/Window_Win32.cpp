@@ -49,7 +49,7 @@ namespace GL
 		if ( !( style & WindowStyle::Fullscreen ) )
 		{
 			// Calculate window size for requested client size
-			RECT rect = { 0, 0, width, height };
+			RECT rect = { 0, 0, static_cast<LONG>(width), static_cast<LONG>(height) };
 			AdjustWindowRect( &rect, windowStyle, false );
 			width = rect.right - rect.left;
 			height = rect.bottom - rect.top;
@@ -121,7 +121,7 @@ namespace GL
 	void Window::SetSize( uint width, uint height )
 	{
 		if ( !open ) return;
-		RECT rect = { 0, 0, width, height };
+		RECT rect = { 0, 0, static_cast<LONG>(width), static_cast<LONG>(height) };
 		AdjustWindowRect( &rect, style, false );
 		SetWindowPos( window, NULL, 0, 0, rect.right - rect.left, rect.bottom - rect.top, SWP_NOMOVE | SWP_NOZORDER );
 	}

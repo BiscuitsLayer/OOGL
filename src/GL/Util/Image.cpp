@@ -24,6 +24,8 @@
 #pragma warning( disable : 4611 )
 #endif
 
+#define _CRT_SECURE_NO_DEPRECATE
+
 #include <GL/Util/Image.hpp>
 #include <GL/Util/libjpeg/jpeglib.h>
 #include <GL/Util/libpng/png.h>
